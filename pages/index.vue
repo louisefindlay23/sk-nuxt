@@ -13,6 +13,7 @@ const components = {
 </script>
 
 <template>
+  <!--  -->
   <slice-zone
     :slices="home.data.body"
     :components="components"
