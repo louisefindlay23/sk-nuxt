@@ -1,5 +1,6 @@
 <script setup>
 import HeadingSlice from "../slices/Heading/index.vue";
+import ImageSlice from "../slices/Image/index.vue";
 import TextSlice from "../slices/Text/index.vue";
 
 const route = useRoute();
@@ -12,6 +13,7 @@ const { data: page } = await useAsyncData("page", () =>
 
 const components = {
   heading: HeadingSlice,
+  image: ImageSlice,
   text: TextSlice,
 };
 </script>
