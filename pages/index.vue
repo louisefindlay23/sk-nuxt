@@ -1,5 +1,6 @@
 <script setup>
 import TextSlice from "../slices/Text/index.vue";
+import RecentPostsSlice from "../slices/RecentPosts/index.vue";
 const { client } = usePrismic();
 const { data: home } = await useAsyncData("home", () =>
   client.getSingle("home")
@@ -7,6 +8,7 @@ const { data: home } = await useAsyncData("home", () =>
 
 const components = {
   text: TextSlice,
+  recent_posts: RecentPostsSlice,
 };
 </script>
 

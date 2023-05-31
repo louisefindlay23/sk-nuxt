@@ -1,0 +1,40 @@
+/* Content Box Styles */
+.boxContainer > article {
+  display: flex;
+  justify-content: space-around;
+  margin: 3rem 0;
+  padding: 1rem 3rem;
+  border: 3px solid #000000;
+}
+
+.boxContainer > article:first-of-type {
+  margin-top: 1rem;
+}
+
+.boxContainer > article:last-of-type {
+  margin-bottom: 2rem;
+}
+
+.boxContainer > section > h2 {
+  margin-top: 2rem;
+}
+
+.boxContent {
+  width: 50%;
+}
+
+.boxContent h4 {
+  margin-top: 0;
+}
+
+.boxImage {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 30%;
+}
+
+.boxImage img {
+  min-width: 150px;
+  object-fit: contain;
+}
