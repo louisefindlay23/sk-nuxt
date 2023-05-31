@@ -25,7 +25,7 @@ console.info(posts);
         <a :href="`/post/${post.uid}`">
           <prismic-rich-text :field="post.data.body[0].primary.heading" />
         </a>
-        <!-- <Date :postDate="post.first_publication_date" /> -->
+        <Date :postDate="post.first_publication_date" />
         <!-- Slice the post's first paragraph for the excerpt -->
         <prismic-rich-text
           :field="post.data.body[2].primary.text.slice(0, 1)"
