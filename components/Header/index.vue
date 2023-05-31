@@ -1,4 +1,5 @@
 <script setup>
+import { Navigation } from "./Navigation.vue";
 import styles from "./Header.module.css";
 const siteTitle = "The Sock Kingdom";
 </script>
@@ -8,5 +9,6 @@ const siteTitle = "The Sock Kingdom";
     <a href="/">
       <h1>{{ siteTitle }}</h1>
     </a>
+    <Navigation />
   </header>
 </template>
