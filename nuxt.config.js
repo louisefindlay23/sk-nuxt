@@ -1,4 +1,10 @@
 export default defineNuxtConfig({
+  components: [
+    {
+      path: "~/components",
+      pathPrefix: false,
+    },
+  ],
   modules: ["@nuxtjs/prismic"],
   prismic: {
     endpoint: "onboarding-content-management",

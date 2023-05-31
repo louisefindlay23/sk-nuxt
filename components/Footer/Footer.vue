@@ -1,16 +1,10 @@
 <script setup>
+import styles from "./Footer.module.css";
 const siteTitle = "The Sock Kingdom";
 </script>
 
 <template>
-  <footer class="pageFooter">
+  <footer :class="styles.pageFooter">
     <p>© {{ new Date().getFullYear() }} {{ siteTitle }}</p>
   </footer>
 </template>
-
-<style scoped>
-.pageFooter {
-  font-weight: bold;
-  text-align: center;
-}
-</style>
