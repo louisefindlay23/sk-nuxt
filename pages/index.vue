@@ -1,4 +1,5 @@
 <script setup>
+// TODO: Import Slices better - probably in components folder
 import TextSlice from "../slices/Text/index.vue";
 import RecentPostsSlice from "../slices/RecentPosts/index.vue";
 const { client } = usePrismic();
