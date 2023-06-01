@@ -4,19 +4,19 @@ import styles from "./PostList.module.css";
 const props = defineProps(["posts"]);
 
 // Pagination functions
-const showPosts = useState("showPosts", () => props.posts);
-const postPage = useState("postPage", () => 1);
+const showPosts = useState("showPosts", () => props.posts.slice(0, 1));
+const postPage = useState("postPage", () => 0);
 
 const getPreviousPosts = () => {
-  const previousPosts = showPosts.value.slice(postPage - 1, postPage);
-  const previousPage = postPage - 1;
+  const previousPosts = props.posts.slice(postPage.value - 1, postPage.value);
+  const previousPage = postPage.value - 1;
   showPosts.value = previousPosts;
   postPage.value = previousPage;
+  //console.info(showPosts);
 };
-
 const getNextPosts = () => {
-  const nextPosts = showPosts.value.slice(postPage + 1, postPage + 2);
-  const nextPage = postPage + 1;
+  const nextPosts = props.posts.slice(postPage.value + 1, postPage.value + 2);
+  const nextPage = postPage.value + 1;
   showPosts.value = nextPosts;
   postPage.value = nextPage;
 };
@@ -38,11 +38,12 @@ const getNextPosts = () => {
   </article>
   <!-- Pagination buttons -->
   <div :class="styles.pagination">
-    <button @click="getPreviousPosts" :disabled="postPage === 1">
+    <button
+      @click="getPreviousPosts"
+      :disabled="postPage === showPosts.length - 1"
+    >
       Previous
     </button>
-    <button @click="getNextPosts" :disabled="postPage === showPosts.length - 1">
-      Next
-    </button>
+    <button @click="getNextPosts" :disabled="postPage.value === 1">Next</button>
   </div>
 </template>
