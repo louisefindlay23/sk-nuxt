@@ -14,9 +14,10 @@
     "nuxt": "^3.5.2"
   },
   "dependencies": {
+    "@code-hike/lighter": "^0.6.7",
     "@prismicio/helpers": "^2.3.9",
     "date-fns": "^2.30.0",
     "piglatin": "^0.1.2",
-    "shiki": "^0.14.2"
+    "prismjs": "^1.29.0"
   }
 }

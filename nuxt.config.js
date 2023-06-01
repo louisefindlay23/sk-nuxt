@@ -9,13 +9,6 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
-  vite: {
-    define: {
-      "process.env": {
-        VSCODE_TEXTMATE_DEBUG: false,
-      },
-    },
-  },
   modules: ["@nuxtjs/prismic"],
   prismic: {
     endpoint: "onboarding-content-management",
