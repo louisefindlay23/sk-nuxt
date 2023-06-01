@@ -1,19 +1,11 @@
 <script setup>
 import styles from "./PostList.module.css";
 
-const { client } = usePrismic();
+const props = defineProps(["posts"]);
 
 // Pagination functions
-const showPosts = ref([]);
-const postPage = ref(1);
-
-const getPosts = async () => {
-  const { data: posts } = await useAsyncData("posts", () =>
-    client.getAllByType("posts")
-  );
-  showPosts.value = posts.slice(0, 1);
-  return { posts, showPosts };
-};
+const showPosts = useState("showPosts", () => props.posts);
+const postPage = useState("postPage", () => 1);
 
 const getPreviousPosts = () => {
   const previousPosts = showPosts.value.slice(postPage - 1, postPage);
@@ -28,8 +20,6 @@ const getNextPosts = () => {
   showPosts.value = nextPosts;
   postPage.value = nextPage;
 };
-
-getPosts();
 </script>
 
 <template>
@@ -51,10 +41,7 @@ getPosts();
     <button @click="getPreviousPosts" :disabled="postPage === 1">
       Previous
     </button>
-    <button
-      @click="getNextPosts"
-      :disabled="postPage === showPosts.value.length - 1"
-    >
+    <button @click="getNextPosts" :disabled="postPage === showPosts.length - 1">
       Next
     </button>
   </div>
