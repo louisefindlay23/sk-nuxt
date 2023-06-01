@@ -6,14 +6,14 @@
 code[class*="language-"],
 pre[class*="language-"] {
   color: #393a34;
-  font-family: "Consolas", "Bitstream Vera Sans Mono", "Courier New", Courier,
-    monospace;
+  font-family: "Fira Code";
   direction: ltr;
   text-align: left;
-  white-space: pre;
+  white-space: pre-wrap;
   word-spacing: normal;
   word-break: normal;
   font-size: 0.9em;
+  font-weight: 500;
   line-height: 1.2em;
 
   -moz-tab-size: 4;
