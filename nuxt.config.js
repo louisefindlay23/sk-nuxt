@@ -4,6 +4,10 @@ export default defineNuxtConfig({
       path: "~/components",
       pathPrefix: false,
     },
+    {
+      path: "~/slices",
+      pathPrefix: false,
+    },
   ],
   modules: ["@nuxtjs/prismic"],
   prismic: {

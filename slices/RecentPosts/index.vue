@@ -1,6 +1,8 @@
 <script setup>
 import styles from "./RecentPosts.module.css";
+
 defineProps(getSliceComponentProps(["slice", "index", "slices", "context"]));
+
 const { client } = usePrismic();
 const { data: posts } = await useAsyncData(
   "posts",
@@ -9,7 +11,6 @@ const { data: posts } = await useAsyncData(
     pageSize: 3,
   }
 );
-console.info(posts);
 </script>
 
 <template>

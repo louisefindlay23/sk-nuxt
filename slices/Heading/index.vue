@@ -1,6 +1,7 @@
 <script setup>
-defineProps(getSliceComponentProps(["slice", "index", "slices", "context"]));
 import pigLatin from "piglatin";
+
+defineProps(getSliceComponentProps(["slice", "index", "slices", "context"]));
 
 // Convert h2s into Pig Latin
 const latinSerializer = {
