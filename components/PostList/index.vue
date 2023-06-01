@@ -40,10 +40,20 @@ const getNextPosts = () => {
   <div :class="styles.pagination">
     <button
       @click="getPreviousPosts"
-      :disabled="postPage === showPosts.length - 1"
+      :disabled="postPage.value === showPosts.length - 1"
     >
       Previous
     </button>
-    <button @click="getNextPosts" :disabled="postPage.value === 1">Next</button>
+    {{
+      `Current post page is ${postPage}. The next button should be disabled at ${
+        props.posts.length - 1
+      }`
+    }}
+    <button
+      @click="getNextPosts"
+      :disabled="postPage === props.posts.length - 1"
+    >
+      Next
+    </button>
   </div>
 </template>
