@@ -25,7 +25,6 @@ const codeSerializer = {
 
 <template>
   <div>
-    <link href="/prism-ghcolors.css" rel="stylesheet" />
     <prismic-rich-text
       :field="slice.primary.code"
       :htmlSerializer="codeSerializer"
