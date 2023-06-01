@@ -1,5 +1,5 @@
 <script setup>
-import HeadingSlice from "~/slices/Heading/index.vue";
+import HeadingSlice from "~/slices/Heading";
 
 import styles from "~/components/PostList/PostList.module.css";
 
@@ -8,7 +8,7 @@ const { data: page } = await useAsyncData("pages", () =>
   client.getByUID("pages", "post")
 );
 const { data: posts } = await useAsyncData("posts", () =>
-client.getAllByType("posts")
+  client.getAllByType("posts")
 );
 
 const components = {
@@ -19,6 +19,6 @@ const components = {
 <template>
   <main :class="[styles.boxContainer, styles.page]">
     <slice-zone :slices="page.data.body" :components="components" />
-    <PostList :posts="posts"/>
+    <PostList :posts="posts" />
   </main>
 </template>

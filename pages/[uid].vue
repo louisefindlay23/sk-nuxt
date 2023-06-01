@@ -1,7 +1,7 @@
 <script setup>
-import HeadingSlice from "~/slices/Heading/index.vue";
-import ImageSlice from "~/slices/Image/index.vue";
-import TextSlice from "~/slices/Text/index.vue";
+import HeadingSlice from "~/slices/Heading";
+import ImageSlice from "~/slices/Image";
+import TextSlice from "~/slices/Text";
 
 const route = useRoute();
 const uid = route.params.uid;

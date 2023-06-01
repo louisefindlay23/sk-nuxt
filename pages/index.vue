@@ -1,7 +1,6 @@
 <script setup>
-// TODO: Import Slices better
-import TextSlice from "~/slices/Text/index.vue";
-import RecentPostsSlice from "~/slices/RecentPosts/index.vue";
+import TextSlice from "~/slices/Text";
+import RecentPostsSlice from "~/slices/RecentPosts";
 const { client } = usePrismic();
 const { data: home } = await useAsyncData("home", () =>
   client.getSingle("home")

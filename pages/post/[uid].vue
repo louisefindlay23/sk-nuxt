@@ -1,10 +1,10 @@
 <script setup>
 import * as prismicH from "@prismicio/helpers";
 
-import HeadingSlice from "~/slices/Heading/index.vue";
-import ImageSlice from "~/slices/Image/index.vue";
-import TextSlice from "~/slices/Text/index.vue";
-import CodeSlice from "~/slices/Code/index.vue";
+import HeadingSlice from "~/slices/Heading";
+import ImageSlice from "~/slices/Image";
+import TextSlice from "~/slices/Text";
+import CodeSlice from "~/slices/Code";
 
 import styles from "./Post.module.css";
 
