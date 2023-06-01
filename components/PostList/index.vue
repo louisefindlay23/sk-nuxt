@@ -12,7 +12,6 @@ const getPreviousPosts = () => {
   const previousPage = postPage.value - 1;
   showPosts.value = previousPosts;
   postPage.value = previousPage;
-  //console.info(showPosts);
 };
 const getNextPosts = () => {
   const nextPosts = props.posts.slice(postPage.value + 1, postPage.value + 2);
@@ -40,15 +39,10 @@ const getNextPosts = () => {
   <div :class="styles.pagination">
     <button
       @click="getPreviousPosts"
-      :disabled="postPage.value === showPosts.length - 1"
+      :disabled="postPage === showPosts.length - 1"
     >
       Previous
     </button>
-    {{
-      `Current post page is ${postPage}. The next button should be disabled at ${
-        props.posts.length - 1
-      }`
-    }}
     <button
       @click="getNextPosts"
       :disabled="postPage === props.posts.length - 1"
