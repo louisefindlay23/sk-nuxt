@@ -2,29 +2,34 @@
 import styles from "./PostList.module.css";
 
 const { client } = usePrismic();
-const { data: posts } = await useAsyncData("posts", () =>
-  client.getAllByType("posts")
-);
 
 // Pagination functions
-const defaultPosts = useState("showPosts", () => posts.slice(0, 1));
-const postPage = useState("postPage", () => 1);
+const showPosts = ref([]);
+const postPage = ref(1);
+
+const getPosts = async () => {
+  const { data: posts } = await useAsyncData("posts", () =>
+    client.getAllByType("posts")
+  );
+  showPosts.value = posts.slice(0, 1);
+  return { posts, showPosts };
+};
 
 const getPreviousPosts = () => {
-  const previousPosts = posts.slice(postPage - 1, postPage);
+  const previousPosts = showPosts.value.slice(postPage - 1, postPage);
   const previousPage = postPage - 1;
-  showPosts(previousPosts);
-  postPage(previousPage);
+  showPosts.value = previousPosts;
+  postPage.value = previousPage;
 };
 
 const getNextPosts = () => {
-  const nextPosts = posts.slice(postPage + 1, postPage + 2);
+  const nextPosts = showPosts.value.slice(postPage + 1, postPage + 2);
   const nextPage = postPage + 1;
-  showPosts(nextPosts);
-  postPage(nextPage);
+  showPosts.value = nextPosts;
+  postPage.value = nextPage;
 };
 
-console.info(posts);
+getPosts();
 </script>
 
 <template>
@@ -46,7 +51,10 @@ console.info(posts);
     <button @click="getPreviousPosts" :disabled="postPage === 1">
       Previous
     </button>
-    <button @click="getNextPosts" :disabled="postPage === posts.length - 1">
+    <button
+      @click="getNextPosts"
+      :disabled="postPage === showPosts.value.length - 1"
+    >
       Next
     </button>
   </div>
