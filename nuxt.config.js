@@ -9,7 +9,9 @@ export default defineNuxtConfig({
       pathPrefix: false,
     },
   ],
+
   modules: ["@nuxtjs/prismic"],
+
   prismic: {
     endpoint: "onboarding-content-management",
     clientConfig: {
@@ -19,5 +21,9 @@ export default defineNuxtConfig({
         { type: "pages", path: "/:uid" },
       ],
     },
+  },
+
+  devtools: {
+    enabled: true,
   },
 });
