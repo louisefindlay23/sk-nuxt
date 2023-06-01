@@ -4,6 +4,7 @@ import * as prismicH from "@prismicio/helpers";
 import HeadingSlice from "~/slices/Heading/index.vue";
 import ImageSlice from "~/slices/Image/index.vue";
 import TextSlice from "~/slices/Text/index.vue";
+import CodeSlice from "~/slices/Code/index.vue";
 
 import styles from "./Post.module.css";
 
@@ -27,6 +28,7 @@ const components = {
   heading: HeadingSlice,
   image: ImageSlice,
   text: TextSlice,
+  code: CodeSlice,
 };
 </script>
 
