@@ -1,8 +1,15 @@
 <script setup>
+import shiki from "shiki";
+
 defineProps(getSliceComponentProps(["slice", "index", "slices", "context"]));
 
+const highlighter = await shiki.getHighlighter({
+  theme: "nord",
+  langs: ["html"],
+});
 const codeSerializer = {
-  preformatted: ({ children }) => `<pre class="code">${children}</pre>`,
+  preformatted: ({ children }) =>
+    highlighter.codeToHtml(children, { lang: "html" }),
 };
 </script>
 
