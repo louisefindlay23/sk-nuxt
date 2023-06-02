@@ -2,10 +2,15 @@
 import TextSlice from "~/slices/Text";
 import RecentPostsSlice from "~/slices/RecentPosts";
 
+import { useNuxtApp } from "#app";
 import { getLocales } from "../lib/getLocales";
 
+const nuxtApp = useNuxtApp();
 const { client } = usePrismic();
-const { data: home } = await useAsyncData("home", (locale) =>
+
+const locale = nuxtApp.$i18n.locale;
+
+const { data: home } = await useAsyncData("home", () =>
   client.getSingle("home", { lang: locale.value })
 );
 
