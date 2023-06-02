@@ -29,5 +29,6 @@ const components = {
         <nuxt-link :href="locale.url">{{ locale.lang_name }}</nuxt-link>
       </li>
     </ul>
+    <v-select label="lang_name" :options="locales" />
   </div>
 </template>

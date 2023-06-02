@@ -21,6 +21,7 @@
     "@prismicio/helpers": "^2.3.9",
     "date-fns": "^2.30.0",
     "piglatin": "^0.1.2",
-    "prismjs": "^1.29.0"
+    "prismjs": "^1.29.0",
+    "vue-select": "^4.0.0-beta.6"
   }
 }

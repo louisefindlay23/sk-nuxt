@@ -44,5 +44,6 @@ export default defineNuxtConfig(async () => {
     devtools: {
       enabled: true,
     },
+    css: ["vue-select/dist/vue-select.css"],
   };
 });
