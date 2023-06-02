@@ -1,6 +1,6 @@
 const prismic = require("@prismicio/client");
 
-const getLocales = async () => {
+const retrieveLocales = async () => {
   const client = prismic.createClient("onboarding-content-management");
   const repository = await client.getRepository();
   const locales = repository.languages.map((lang) => lang.id);
@@ -10,7 +10,7 @@ const getLocales = async () => {
 };
 
 export default defineNuxtConfig(async () => {
-  const locales = await getLocales();
+  const locales = await retrieveLocales();
 
   return {
     components: [

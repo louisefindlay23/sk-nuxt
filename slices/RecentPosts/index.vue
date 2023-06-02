@@ -6,7 +6,7 @@ defineProps(getSliceComponentProps(["slice", "index", "slices", "context"]));
 const { client } = usePrismic();
 const { data: posts } = await useAsyncData(
   "posts",
-  () => client.getAllByType("posts"),
+  (locale) => client.getAllByType("posts", { lang: locale.value }),
   {
     pageSize: 3,
   }

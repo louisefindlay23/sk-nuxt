@@ -2,8 +2,8 @@
 import * as prismicH from "@prismicio/helpers";
 import styles from "./Navigation.module.css";
 const { client } = usePrismic();
-const { data: navigation } = await useAsyncData("navigation", () =>
-  client.getSingle("navigation")
+const { data: navigation } = await useAsyncData("navigation", (locale) =>
+  client.getSingle("navigation", { lang: locale.value })
 );
 </script>
 

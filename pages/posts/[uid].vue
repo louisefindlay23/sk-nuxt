@@ -14,7 +14,7 @@ const uid = route.params.uid;
 const { client } = usePrismic();
 const { data: post } = await useAsyncData("posts", (locale) =>
   client.getByUID("posts", uid, {
-    lang: locale,
+    lang: locale.value,
     fetchLinks: [
       "authors.author_profile",
       "authors.author_image",

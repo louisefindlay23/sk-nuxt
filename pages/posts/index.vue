@@ -5,10 +5,10 @@ import styles from "~/components/PostList/PostList.module.css";
 
 const { client } = usePrismic();
 const { data: page } = await useAsyncData("pages", (locale) =>
-  client.getByUID("pages", "post", { lang: locale })
+  client.getByUID("pages", "post", { lang: locale.value })
 );
 const { data: posts } = await useAsyncData("posts", (locale) =>
-  client.getAllByType("posts", { lang: locale })
+  client.getAllByType("posts", { lang: locale.value })
 );
 
 const components = {
