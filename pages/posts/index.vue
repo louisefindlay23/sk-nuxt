@@ -4,11 +4,11 @@ import HeadingSlice from "~/slices/Heading";
 import styles from "~/components/PostList/PostList.module.css";
 
 const { client } = usePrismic();
-const { data: page } = await useAsyncData("pages", () =>
-  client.getByUID("pages", "post")
+const { data: page } = await useAsyncData("pages", (locale) =>
+  client.getByUID("pages", "post", { lang: locale })
 );
-const { data: posts } = await useAsyncData("posts", () =>
-  client.getAllByType("posts")
+const { data: posts } = await useAsyncData("posts", (locale) =>
+  client.getAllByType("posts", { lang: locale })
 );
 
 const components = {

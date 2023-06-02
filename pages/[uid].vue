@@ -6,9 +6,17 @@ import TextSlice from "~/slices/Text";
 const route = useRoute();
 const uid = route.params.uid;
 
+const { locale, locales } = useI18n();
+
+/* const availableLocales = computed(() => {
+  return locales.value.filter((i) => i.code !== locale.value);
+}); */
+
+/* console.info(locales); */
+
 const { client } = usePrismic();
-const { data: page } = await useAsyncData("page", () =>
-  client.getByUID("pages", uid)
+const { data: page } = await useAsyncData("page", (locale) =>
+  client.getByUID("pages", uid, { lang: locale.value })
 );
 
 const components = {

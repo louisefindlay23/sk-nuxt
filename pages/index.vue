@@ -2,8 +2,8 @@
 import TextSlice from "~/slices/Text";
 import RecentPostsSlice from "~/slices/RecentPosts";
 const { client } = usePrismic();
-const { data: home } = await useAsyncData("home", () =>
-  client.getSingle("home")
+const { data: home } = await useAsyncData("home", (locale) =>
+  client.getSingle("home", { lang: locale })
 );
 
 const components = {
