@@ -3,13 +3,24 @@ import HeadingSlice from "~/slices/Heading";
 
 import styles from "~/components/PostList/PostList.module.css";
 
+import { getLocales } from "~/lib/getLocales";
+
+import { useNuxtApp } from "#app";
+
+const nuxtApp = useNuxtApp();
 const { client } = usePrismic();
-const { data: page } = await useAsyncData("pages", (locale) =>
+
+const locale = nuxtApp.$i18n.locale;
+
+const { data: page } = await useAsyncData("pages", () =>
   client.getByUID("pages", "post", { lang: locale.value })
 );
-const { data: posts } = await useAsyncData("posts", (locale) =>
+const { data: posts } = await useAsyncData("posts", () =>
   client.getAllByType("posts", { lang: locale.value })
 );
+
+const locales = await getLocales(page.value, client);
+const storeLocales = useState("locales", () => locales);
 
 const components = {
   heading: HeadingSlice,
