@@ -13,6 +13,15 @@ export default defineNuxtConfig(async () => {
   const locales = await retrieveLocales();
 
   return {
+    css: [
+      "primevue/resources/themes/lara-light-blue/theme.css",
+      "primevue/resources/primevue.css",
+    ],
+    build: {
+      transpile: ["primevue"],
+    },
+    plugins: [{ src: "~/plugins/primevue.js", mode: "client" }],
+
     components: [
       {
         path: "~/components",
@@ -44,6 +53,5 @@ export default defineNuxtConfig(async () => {
     devtools: {
       enabled: true,
     },
-    css: ["vue-select/dist/vue-select.css"],
   };
 });

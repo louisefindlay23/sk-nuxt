@@ -22,7 +22,7 @@
     "date-fns": "^2.30.0",
     "flag-icons": "^6.7.0",
     "piglatin": "^0.1.2",
-    "prismjs": "^1.29.0",
-    "vue-select": "^4.0.0-beta.6"
+    "primevue": "^3.29.2",
+    "prismjs": "^1.29.0"
   }
 }
