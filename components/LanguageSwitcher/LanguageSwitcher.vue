@@ -4,10 +4,8 @@ const locale = nuxtApp.$i18n.locale;
 
 const getLocales = useState("locales");
 const locales = getLocales.value;
-console.info("Options are", locales);
 
 const switchLocale = (value) => {
-  console.info("Locale changed", value);
   nuxtApp.$i18n.setLocale(value.lang);
   navigateTo(value.url);
 };

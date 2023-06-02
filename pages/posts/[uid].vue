@@ -8,11 +8,19 @@ import CodeSlice from "~/slices/Code";
 
 import styles from "./Post.module.css";
 
+import { getLocales } from "~/lib/getLocales";
+
 const route = useRoute();
 const uid = route.params.uid;
 
+import { useNuxtApp } from "#app";
+
+const nuxtApp = useNuxtApp();
 const { client } = usePrismic();
-const { data: post } = await useAsyncData("posts", (locale) =>
+
+const locale = nuxtApp.$i18n.locale;
+
+const { data: post } = await useAsyncData("posts", () =>
   client.getByUID("posts", uid, {
     lang: locale.value,
     fetchLinks: [
@@ -24,6 +32,9 @@ const { data: post } = await useAsyncData("posts", (locale) =>
     ],
   })
 );
+
+const locales = await getLocales(post.value, client);
+const storeLocales = useState("locales", () => locales);
 
 const components = {
   heading: HeadingSlice,

@@ -6,10 +6,21 @@ import TextSlice from "~/slices/Text";
 const route = useRoute();
 const uid = route.params.uid;
 
+import { getLocales } from "~/lib/getLocales";
+
+import { useNuxtApp } from "#app";
+
+const nuxtApp = useNuxtApp();
 const { client } = usePrismic();
-const { data: page } = await useAsyncData("page", (locale) =>
+
+const locale = nuxtApp.$i18n.locale;
+
+const { data: page } = await useAsyncData("page", () =>
   client.getByUID("pages", uid, { lang: locale.value })
 );
+
+const locales = await getLocales(page.value, client);
+const storeLocales = useState("locales", () => locales);
 
 const components = {
   heading: HeadingSlice,
