@@ -16,6 +16,12 @@ const { data: home } = await useAsyncData("home", () =>
 
 const locales = await getLocales(home.value, client);
 
+const switchLocale = (value) => {
+  console.info("Locale changed", value);
+  nuxtApp.$i18n.setLocale(value.lang);
+  navigateTo(value.url);
+};
+
 const components = {
   text: TextSlice,
   recent_posts: RecentPostsSlice,
@@ -34,6 +40,11 @@ const components = {
         <nuxt-link :href="locale.url">{{ locale.lang_name }}</nuxt-link>
       </li>
     </ul>
-    <v-select label="lang_name" :options="locales" />
+    <v-select
+      v-model="locale"
+      @update:modelValue="switchLocale"
+      label="lang_name"
+      :options="locales"
+    />
   </div>
 </template>
