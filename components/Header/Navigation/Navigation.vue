@@ -16,5 +16,6 @@ const { data: navigation } = await useAsyncData("navigation", (locale) =>
         </prismic-link>
       </li>
     </ul>
+    <LanguageSwitcher />
   </nav>
 </template>
