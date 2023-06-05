@@ -10,7 +10,7 @@ const locale = nuxtApp.$i18n.locale;
 </script>
 
 <template>
-  <nav v-if="navigation">
+  <nav v-if="navigation" :class="styles.nav">
     <ul :class="styles.navList">
       <li v-for="link in navigation.data.menu" :key="JSON.stringify(link)">
         <!-- <prismic-link :field="link.link_url">

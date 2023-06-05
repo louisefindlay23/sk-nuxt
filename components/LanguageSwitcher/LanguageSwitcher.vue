@@ -20,45 +20,47 @@ const switchLocale = (value) => {
 </script>
 
 <template>
-  <Dropdown
-    v-model="locale"
-    :options="getLocales"
-    @change="switchLocale"
-    optionLabel="lang_name"
-    placeholder="Select a Country"
-    :class="`w-full md:w-14rem ${styles.dropdown}`"
-  >
-    <template #value="slotProps">
-      <div v-if="slotProps.value" class="flex align-items-center">
-        <img
-          :alt="slotProps.value.label"
-          src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png"
-          :class="`mr-2 fi fi-${slotProps.value.substring(3)} ${
-            styles.dropdownDisplay
-          } ${styles.dropdownImage}`"
-        />
-        <div v-if="getCurrentLocaleName" :class="styles.dropdownDisplay">
-          {{ getCurrentLocaleName.lang_name }}
+  <div :class="styles.languageSelect">
+    <Dropdown
+      v-model="locale"
+      :options="getLocales"
+      @change="switchLocale"
+      optionLabel="lang_name"
+      placeholder="Select a Country"
+      :class="`w-full md:w-14rem ${styles.dropdown}`"
+    >
+      <template #value="slotProps">
+        <div v-if="slotProps.value" class="flex align-items-center">
+          <img
+            :alt="slotProps.value.label"
+            src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png"
+            :class="`mr-2 fi fi-${slotProps.value.substring(3)} ${
+              styles.dropdownDisplay
+            } ${styles.dropdownImage}`"
+          />
+          <div v-if="getCurrentLocaleName" :class="styles.dropdownDisplay">
+            {{ getCurrentLocaleName.lang_name }}
+          </div>
         </div>
-      </div>
-      <span v-else>
-        {{ slotProps.placeholder }}
-      </span>
-    </template>
-    <template #option="slotProps">
-      <div class="flex align-items-center">
-        <img
-          :alt="slotProps.option.lang_name"
-          src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png"
-          :class="`mr-2 fi fi-${slotProps.option.lang.substring(3)} ${
-            styles.dropdownDisplay
-          } ${styles.dropdownImage}
+        <span v-else>
+          {{ slotProps.placeholder }}
+        </span>
+      </template>
+      <template #option="slotProps">
+        <div class="flex align-items-center">
+          <img
+            :alt="slotProps.option.lang_name"
+            src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png"
+            :class="`mr-2 fi fi-${slotProps.option.lang.substring(3)} ${
+              styles.dropdownDisplay
+            } ${styles.dropdownImage}
           `"
-        />
-        <div :class="styles.dropdownDisplay">
-          {{ slotProps.option.lang_name }}
+          />
+          <div :class="styles.dropdownDisplay">
+            {{ slotProps.option.lang_name }}
+          </div>
         </div>
-      </div>
-    </template>
-  </Dropdown>
+      </template>
+    </Dropdown>
+  </div>
 </template>
