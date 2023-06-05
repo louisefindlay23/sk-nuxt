@@ -1,6 +1,4 @@
 <script setup>
-import { useNuxtApp } from "#app";
-
 import HeadingSlice from "~/slices/Heading";
 import ImageSlice from "~/slices/Image";
 import TextSlice from "~/slices/Text";

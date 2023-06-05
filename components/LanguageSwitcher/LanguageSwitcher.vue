@@ -7,6 +7,7 @@ const locale = nuxtApp.$i18n.locale;
 
 const getLocales = useState("locales");
 
+// Find lang name from current locale to use in language selector display value
 const getCurrentLocaleName = computed(() => {
   const locales = getLocales.value;
   return locales ? locales.find((loc) => loc.lang === locale.value) : undefined;
@@ -19,6 +20,7 @@ const switchLocale = (value) => {
 };
 </script>
 
+// PrimeVue dropdown component to show country flags
 <template>
   <div :class="styles.languageSelect">
     <Dropdown
@@ -29,6 +31,9 @@ const switchLocale = (value) => {
       placeholder="Select a Country"
       :class="`w-full md:w-14rem ${styles.dropdown}`"
     >
+      <!-- Slot props to display country flags inside div -->
+
+      <!-- Dropdown current value -->
       <template #value="slotProps">
         <div v-if="slotProps.value" class="flex align-items-center">
           <img
@@ -46,6 +51,7 @@ const switchLocale = (value) => {
           {{ slotProps.placeholder }}
         </span>
       </template>
+      <!-- Dropdown options -->
       <template #option="slotProps">
         <div class="flex align-items-center">
           <img

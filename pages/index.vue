@@ -1,6 +1,4 @@
 <script setup>
-import { useNuxtApp } from "#app";
-
 import TextSlice from "~/slices/Text";
 import RecentPostsSlice from "~/slices/RecentPosts";
 

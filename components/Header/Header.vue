@@ -1,5 +1,6 @@
 <script setup>
 import styles from "./Header.module.css";
+
 const siteTitle = "The Sock Kingdom";
 </script>
 

@@ -1,6 +1,4 @@
 <script setup>
-import { useNuxtApp } from "#app";
-
 import HeadingSlice from "~/slices/Heading";
 
 import { getLocales } from "~/lib/getLocales";

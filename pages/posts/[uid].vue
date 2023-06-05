@@ -1,6 +1,4 @@
 <script setup>
-import { useNuxtApp } from "#app";
-
 import * as prismicH from "@prismicio/helpers";
 
 import HeadingSlice from "~/slices/Heading";
@@ -20,6 +18,7 @@ const { client } = usePrismic();
 
 const locale = nuxtApp.$i18n.locale;
 
+// Use fetchLinks to get author data
 const { data: post } = await useAsyncData("posts", () =>
   client.getByUID("posts", uid, {
     lang: locale.value,

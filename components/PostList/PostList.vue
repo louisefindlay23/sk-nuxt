@@ -3,7 +3,7 @@ import styles from "./PostList.module.css";
 
 const props = defineProps(["posts"]);
 
-// Pagination functions
+// Set page number and initial posts
 const showPosts = useState("showPosts", () => props.posts.slice(0, 1));
 const postPage = useState("postPage", () => 0);
 
