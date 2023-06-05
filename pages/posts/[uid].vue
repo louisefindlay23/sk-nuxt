@@ -13,10 +13,9 @@ import styles from "./Post.module.css";
 const route = useRoute();
 const uid = route.params.uid;
 
-const nuxtApp = useNuxtApp();
 const { client } = usePrismic();
 
-const locale = nuxtApp.$i18n.locale;
+const { locale } = useI18n();
 
 // Use fetchLinks to get author data
 const { data: post } = await useAsyncData("posts", () =>
@@ -60,13 +59,15 @@ const components = {
           <PrismicRichText
             :field="author.author_relationship.data.author_bio"
           />
-          <a :href="author.author_relationship.data.author_website_link.url">
+          <prismic-link
+            :field="author.author_relationship.data.author_website_link"
+          >
             {{
               prismicH.asText(
                 author.author_relationship.data.author_website_text
               )
             }}
-          </a>
+          </prismic-link>
         </div>
         <div :class="styles.boxImage">
           <PrismicImage :field="author.author_relationship.data.author_image" />

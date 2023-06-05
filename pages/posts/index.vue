@@ -5,10 +5,9 @@ import { getLocales } from "~/lib/getLocales";
 
 import styles from "~/components/PostList/PostList.module.css";
 
-const nuxtApp = useNuxtApp();
 const { client } = usePrismic();
 
-const locale = nuxtApp.$i18n.locale;
+const { locale } = useI18n();
 
 const { data: page } = await useAsyncData("pages", () =>
   client.getByUID("pages", "post", { lang: locale.value })

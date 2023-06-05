@@ -8,10 +8,9 @@ import { getLocales } from "~/lib/getLocales";
 const route = useRoute();
 const uid = route.params.uid;
 
-const nuxtApp = useNuxtApp();
 const { client } = usePrismic();
 
-const locale = nuxtApp.$i18n.locale;
+const { locale } = useI18n();
 
 const { data: page } = await useAsyncData("page", () =>
   client.getByUID("pages", uid, { lang: locale.value })

@@ -3,23 +3,21 @@ import * as prismicH from "@prismicio/helpers";
 
 import styles from "./Navigation.module.css";
 
+const { locale } = useI18n();
+
 const { client } = usePrismic();
 const { data: navigation } = await useAsyncData("navigation", (locale) =>
   client.getSingle("navigation", { lang: locale.value })
 );
-const nuxtApp = useNuxtApp();
-const locale = nuxtApp.$i18n.locale;
+
+const localePath = useLocalePath();
 </script>
 
 <template>
   <nav v-if="navigation" :class="styles.nav">
     <ul :class="styles.navList">
       <li v-for="link in navigation.data.menu" :key="JSON.stringify(link)">
-        <!-- Figure out how to pass locale prop -->
-        <!-- <prismic-link :field="link.link_url">
-          {{ prismicH.asText(link.link_text) }}
-        </prismic-link> -->
-        <nuxt-link :to="`/${locale}${link.link_url.url}`">
+        <nuxt-link :to="localePath(link.link_url.url)">
           {{ prismicH.asText(link.link_text) }}
         </nuxt-link>
       </li>

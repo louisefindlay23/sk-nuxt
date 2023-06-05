@@ -24,10 +24,9 @@ const { data: posts } = await useAsyncData(
       :key="JSON.stringify(post.data)"
     >
       <div :class="styles.boxContent">
-        <!-- TODO: Use Prismic Link or Nuxt Link -->
-        <a :href="`/post/${post.uid}`">
+        <nuxt-link :to="localePath(post.url)">
           <prismic-rich-text :field="post.data.body[0].primary.heading" />
-        </a>
+        </nuxt-link>
         <Date :postDate="post.first_publication_date" />
         <!-- Slice the post's first paragraph for the excerpt -->
         <prismic-rich-text

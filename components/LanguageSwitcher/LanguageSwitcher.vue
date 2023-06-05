@@ -2,8 +2,7 @@
 import "/node_modules/flag-icons/css/flag-icons.min.css";
 import styles from "./LanguageSwitcher.module.css";
 
-const nuxtApp = useNuxtApp();
-const locale = nuxtApp.$i18n.locale;
+const { locale } = useI18n();
 
 const getLocales = useState("locales");
 

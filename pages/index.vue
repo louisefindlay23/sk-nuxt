@@ -4,10 +4,9 @@ import RecentPostsSlice from "~/slices/RecentPosts";
 
 import { getLocales } from "~/lib/getLocales";
 
-const nuxtApp = useNuxtApp();
 const { client } = usePrismic();
 
-const locale = nuxtApp.$i18n.locale;
+const { locale } = useI18n();
 
 const { data: home } = await useAsyncData("home", () =>
   client.getSingle("home", { lang: locale.value })
