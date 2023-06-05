@@ -6,7 +6,11 @@ const nuxtApp = useNuxtApp();
 const locale = nuxtApp.$i18n.locale;
 
 const getLocales = useState("locales");
-const locales = getLocales.value;
+
+const getCurrentLocaleName = computed(() => {
+  const locales = getLocales.value;
+  return locales ? locales.find((loc) => loc.lang === locale.value) : undefined;
+});
 
 const switchLocale = (value) => {
   value = value.value;
@@ -18,7 +22,7 @@ const switchLocale = (value) => {
 <template>
   <Dropdown
     v-model="locale"
-    :options="locales"
+    :options="getLocales"
     @change="switchLocale"
     optionLabel="lang_name"
     placeholder="Select a Country"
@@ -33,7 +37,9 @@ const switchLocale = (value) => {
             styles.dropdownDisplay
           } ${styles.dropdownImage}`"
         />
-        <div :class="styles.dropdownDisplay">{{ slotProps.value }}</div>
+        <div v-if="getCurrentLocaleName" :class="styles.dropdownDisplay">
+          {{ getCurrentLocaleName.lang_name }}
+        </div>
       </div>
       <span v-else>
         {{ slotProps.placeholder }}
