@@ -1,4 +1,6 @@
 <script setup>
+import { useNuxtApp } from "#app";
+
 import * as prismicH from "@prismicio/helpers";
 
 import HeadingSlice from "~/slices/Heading";
@@ -6,14 +8,12 @@ import ImageSlice from "~/slices/Image";
 import TextSlice from "~/slices/Text";
 import CodeSlice from "~/slices/Code";
 
-import styles from "./Post.module.css";
-
 import { getLocales } from "~/lib/getLocales";
+
+import styles from "./Post.module.css";
 
 const route = useRoute();
 const uid = route.params.uid;
-
-import { useNuxtApp } from "#app";
 
 const nuxtApp = useNuxtApp();
 const { client } = usePrismic();

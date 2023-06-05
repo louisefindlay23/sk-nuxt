@@ -23,6 +23,7 @@ const { data: posts } = await useAsyncData(
       :key="JSON.stringify(post.data)"
     >
       <div :class="styles.boxContent">
+        <!-- TODO: Use Prismic Link or Nuxt Link -->
         <a :href="`/post/${post.uid}`">
           <prismic-rich-text :field="post.data.body[0].primary.heading" />
         </a>

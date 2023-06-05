@@ -1,5 +1,7 @@
 <script setup>
 import "./styles/main.css";
+
+// Google Font imports
 useHead({
   link: [
     {
@@ -19,6 +21,7 @@ useHead({
 </script>
 
 <template>
+  <!-- App layout -->
   <div id="app">
     <Header />
     <NuxtPage />

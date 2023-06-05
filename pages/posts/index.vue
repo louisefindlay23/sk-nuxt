@@ -1,11 +1,11 @@
 <script setup>
-import HeadingSlice from "~/slices/Heading";
+import { useNuxtApp } from "#app";
 
-import styles from "~/components/PostList/PostList.module.css";
+import HeadingSlice from "~/slices/Heading";
 
 import { getLocales } from "~/lib/getLocales";
 
-import { useNuxtApp } from "#app";
+import styles from "~/components/PostList/PostList.module.css";
 
 const nuxtApp = useNuxtApp();
 const { client } = usePrismic();

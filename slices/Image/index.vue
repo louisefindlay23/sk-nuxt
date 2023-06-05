@@ -4,6 +4,8 @@ import styles from "./Image.module.css";
 const props = defineProps(
   getSliceComponentProps(["slice", "index", "slices", "context"])
 );
+
+// Get Imgix parameters from select field
 let imgixParams = null;
 if (props.slice.primary.image_transformations === "blackWhite") {
   imgixParams = { duotone: ["black", "white"] };

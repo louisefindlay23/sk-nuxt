@@ -1,10 +1,10 @@
 <script setup>
+import { useNuxtApp } from "#app";
+
 import TextSlice from "~/slices/Text";
 import RecentPostsSlice from "~/slices/RecentPosts";
 
 import { getLocales } from "~/lib/getLocales";
-
-import { useNuxtApp } from "#app";
 
 const nuxtApp = useNuxtApp();
 const { client } = usePrismic();

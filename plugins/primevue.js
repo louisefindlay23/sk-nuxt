@@ -1,3 +1,4 @@
+// PrimeVue plugin for Dropdown component
 import { defineNuxtPlugin } from "#app";
 import PrimeVue from "primevue/config";
 import Dropdown from "primevue/dropdown";

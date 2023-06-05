@@ -1,14 +1,14 @@
 <script setup>
+import { useNuxtApp } from "#app";
+
 import HeadingSlice from "~/slices/Heading";
 import ImageSlice from "~/slices/Image";
 import TextSlice from "~/slices/Text";
 
-const route = useRoute();
-const uid = route.params.uid;
-
 import { getLocales } from "~/lib/getLocales";
 
-import { useNuxtApp } from "#app";
+const route = useRoute();
+const uid = route.params.uid;
 
 const nuxtApp = useNuxtApp();
 const { client } = usePrismic();
