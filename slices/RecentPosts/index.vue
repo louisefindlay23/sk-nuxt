@@ -4,7 +4,6 @@ import styles from "./RecentPosts.module.css";
 defineProps(getSliceComponentProps(["slice", "index", "slices", "context"]));
 
 const { client } = usePrismic();
-// TODO: Should I move the query to the page?
 const { data: posts } = await useAsyncData(
   "posts",
   (locale) => client.getAllByType("posts", { lang: locale.value }),
