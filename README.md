@@ -1,42 +1,19 @@
-# Nuxt 3 Minimal Starter
+## The Sock Kingdom - A Nuxt Prismic Site
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+### Purpose
 
-## Setup
+Develop a basic website using Prismic and Nuxt that uses layouts, dynamic routes, and file-based routing. Also, internationlize content using Prismic locales and create a language switcher.
 
-Make sure to install the dependencies:
+### About the website
 
-```bash
-# yarn
-yarn install
+The Sock Kingdom website contains three blog posts about buying socks which are displayed on the homepage using a Recent Posts slice. There is also a Posts page which uses pagination to show all blog posts.
 
-# npm
-npm install
+The HTML serializer was used to render `h2` elements as Pig Latin via the [`piglatin`](https://github.com/montanaflynn/piglatin) module and code snippet field as a `code` element via the Code custom label. [Prism](https://prismjs.com/) was used to add syntax highlighting to the code snippet.
 
-# pnpm
-pnpm install
-```
+Other modules used included [`date-fns`](https://date-fns.org) to render the blog post publication date, [`PrimeVue's Dropdown`](https://primevue.org/dropdown) component to create the language switcher select element, and [`flag-icons`](https://www.npmjs.com/package/flag-icons) to display the language icons.
 
-## Development Server
+The blog post content was generated via [ChatGPT](https://openai.com/blog/chatgpt) and author profiles using [AI Writer](https://tools.picsart.com/text/ai-writer). All blog post images were taken from [Unsplash](https://unsplash.com).
 
-Start the development server on `http://localhost:3000`
+### Screenshot
 
-```bash
-npm run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+![The Sock Kingdom website screenshot](https://github.com/louisefindlay23/sk-nuxt/assets/26024131/642407fe-7eb6-47f1-b16a-b9a16e3e20aa)
