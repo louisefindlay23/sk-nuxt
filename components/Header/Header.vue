@@ -1,13 +1,13 @@
 <script setup>
 import styles from "./Header.module.css";
 
-const siteTitle = "The Sock Kingdom";
+const nuxtApp = useNuxtApp();
 </script>
 
 <template>
   <header :class="styles.pageHeader">
     <a href="/">
-      <h1>{{ siteTitle }}</h1>
+      <h1>{{ nuxtApp.$siteTitle }}</h1>
     </a>
     <Navigation />
   </header>
