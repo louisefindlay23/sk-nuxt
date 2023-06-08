@@ -1,11 +1,12 @@
 <script setup>
 import styles from "./Footer.module.css";
 
-const nuxtApp = useNuxtApp();
+const siteTitle = useState("siteTitle");
 </script>
 
 <template>
   <footer :class="styles.pageFooter">
-    <p>© {{ new Date().getFullYear() }} {{ nuxtApp.$siteTitle }}</p>
+    <p v-if="siteTitle">© {{ new Date().getFullYear() }} {{ siteTitle }}</p>
+    <p v-else>© {{ new Date().getFullYear() }} The Sock Kingdom</p>
   </footer>
 </template>

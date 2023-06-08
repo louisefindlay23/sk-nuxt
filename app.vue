@@ -3,17 +3,16 @@ import * as prismicH from "@prismicio/helpers";
 
 import "./styles/main.css";
 
-const nuxtApp = useNuxtApp();
-
 const { data: navigation } = await useAsyncData("navigation", (locale) =>
   client.getSingle("navigation", { lang: locale.value })
 );
 
+const siteTitle = ref(null);
+
 // Set siteTitle globally as nuxtApp provide
 watchEffect(() => {
   if (navigation.value) {
-    nuxtApp.provide(
-      "siteTitle",
+    siteTitle.value = useState("siteTitle", () =>
       prismicH.asText(navigation.value.data.site_title)
     );
   }
@@ -21,7 +20,7 @@ watchEffect(() => {
 
 // Google Font imports
 useHead({
-  title: nuxtApp.$siteTitle,
+  title: siteTitle.value,
   link: [
     {
       rel: "preconnect",
