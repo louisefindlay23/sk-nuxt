@@ -1,7 +1,9 @@
 <script setup>
-// Import Prism and a Prismic theme for syntax highlighting
+// Import Prism and a Prismic theme for syntax highlighting and Prettier for code formatting
 import Prism from "prismjs";
 import "./prism-ghcolors.css";
+import prettier from "prettier";
+import parserHTML from "prettier/parser-html";
 
 // Get monospace font
 useHead({
@@ -15,21 +17,16 @@ useHead({
 
 defineProps(getSliceComponentProps(["slice", "index", "slices", "context"]));
 
+// Format the code using Prettier before highlighting it
 onMounted(() => {
-  /*   Prism.hooks.add("before-highlight", function (env) {
-    console.info("Hook hit");
-    console.info(env);
-    env.code = env.element.innerText;
-  });
-  Prism.highlightElement(env.code);
-  Prism.highlightAll(); */
-
   Prism.hooks.add("before-sanity-check", function (env) {
-    console.info("Hook hit");
-    env.element.innerHTML = env.element.innerText.replace(/>/g, ">\n");
-    console.info(env.element.innerHTML);
-    env.code = env.element.innerHTML;
+    const prettifiedCode = prettier.format(env.element.innerText, {
+      parser: "html",
+      plugins: [parserHTML],
+    });
+    env.code = prettifiedCode;
   });
+
   Prism.highlightAll();
 });
 
