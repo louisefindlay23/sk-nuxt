@@ -1,6 +1,4 @@
 <script setup>
-import * as prismicH from "@prismicio/helpers";
-
 import * as sliceComponents from "~/slices";
 
 import { getLocales } from "~/lib/getLocales";
@@ -50,11 +48,9 @@ const storeLocales = useState("locales", () => locales);
           <prismic-link
             :field="author.author_relationship.data.author_website_link"
           >
-            {{
-              prismicH.asText(
-                author.author_relationship.data.author_website_text
-              )
-            }}
+            <prismic-rich-text
+              :field="author.author_relationship.data.author_website_text"
+            />
           </prismic-link>
         </div>
         <div class="boxImage">

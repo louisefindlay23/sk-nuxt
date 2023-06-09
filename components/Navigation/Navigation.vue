@@ -1,6 +1,4 @@
 <script setup>
-import * as prismicH from "@prismicio/helpers";
-
 const { locale } = useI18n();
 
 const { client } = usePrismic();
@@ -16,7 +14,7 @@ const localePath = useLocalePath();
     <ul class="navList">
       <li v-for="link in navigation.data.menu" :key="JSON.stringify(link)">
         <nuxt-link :to="localePath(link.link_url.url)">
-          {{ prismicH.asText(link.link_text) }}
+          <prismic-rich-text :field="link.link_text" />
         </nuxt-link>
       </li>
     </ul>
