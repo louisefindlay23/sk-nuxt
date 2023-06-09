@@ -1,7 +1,5 @@
 <script setup>
-import HeadingSlice from "~/slices/Heading";
-import ImageSlice from "~/slices/Image";
-import TextSlice from "~/slices/Text";
+import * as sliceComponents from "~/slices";
 
 import { getLocales } from "~/lib/getLocales";
 
@@ -18,16 +16,10 @@ const { data: page } = await useAsyncData("page", () =>
 
 const locales = await getLocales(page.value, client);
 const storeLocales = useState("locales", () => locales);
-
-const components = {
-  heading: HeadingSlice,
-  image: ImageSlice,
-  text: TextSlice,
-};
 </script>
 
 <template>
   <main class="page">
-    <SliceZone :slices="page.data.body" :components="components" />
+    <SliceZone :slices="page.data.body" :components="sliceComponents" />
   </main>
 </template>

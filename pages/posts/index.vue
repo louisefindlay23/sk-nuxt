@@ -1,5 +1,5 @@
 <script setup>
-import HeadingSlice from "~/slices/Heading";
+import * as sliceComponents from "~/slices";
 
 import { getLocales } from "~/lib/getLocales";
 
@@ -16,15 +16,11 @@ const { data: posts } = await useAsyncData("posts", () =>
 
 const locales = await getLocales(page.value, client);
 const storeLocales = useState("locales", () => locales);
-
-const components = {
-  heading: HeadingSlice,
-};
 </script>
 
 <template>
   <main class="boxContainer">
-    <slice-zone :slices="page.data.body" :components="components" />
+    <slice-zone :slices="page.data.body" :components="sliceComponents" />
     <PostList :posts="posts" />
   </main>
 </template>

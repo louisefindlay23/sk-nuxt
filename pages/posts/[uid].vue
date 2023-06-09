@@ -1,10 +1,7 @@
 <script setup>
 import * as prismicH from "@prismicio/helpers";
 
-import HeadingSlice from "~/slices/Heading";
-import ImageSlice from "~/slices/Image";
-import TextSlice from "~/slices/Text";
-import CodeSlice from "~/slices/Code";
+import * as sliceComponents from "~/slices";
 
 import { getLocales } from "~/lib/getLocales";
 
@@ -31,20 +28,13 @@ const { data: post } = await useAsyncData("posts", () =>
 
 const locales = await getLocales(post.value, client);
 const storeLocales = useState("locales", () => locales);
-
-const components = {
-  heading: HeadingSlice,
-  image: ImageSlice,
-  text: TextSlice,
-  code: CodeSlice,
-};
 </script>
 
 <template>
   <div>
     <article v-if="post">
       <h2>Post</h2>
-      <SliceZone :slices="post.data.body" :components="components" />
+      <SliceZone :slices="post.data.body" :components="sliceComponents" />
     </article>
     <footer class="boxContainer">
       <h3>Authors</h3>

@@ -1,6 +1,5 @@
 <script setup>
-import TextSlice from "~/slices/Text";
-import RecentPostsSlice from "~/slices/RecentPosts";
+import * as sliceComponents from "~/slices";
 
 import { getLocales } from "~/lib/getLocales";
 
@@ -14,15 +13,10 @@ const { data: home } = await useAsyncData("home", () =>
 
 const locales = await getLocales(home.value, client);
 const storeLocales = useState("locales", () => locales);
-
-const components = {
-  text: TextSlice,
-  recent_posts: RecentPostsSlice,
-};
 </script>
 
 <template>
   <main>
-    <slice-zone :slices="home.data.body" :components="components" />
+    <slice-zone :slices="home.data.body" :components="sliceComponents" />
   </main>
 </template>
