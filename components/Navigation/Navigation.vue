@@ -20,6 +20,11 @@ const localePath = useLocalePath();
     </ul>
     <LanguageSwitcher />
   </nav>
+  <nav v-else class="nav">
+    <ul class="navList">
+      <li>Loading navigation links...</li>
+    </ul>
+  </nav>
 </template>
 
 <style scoped>

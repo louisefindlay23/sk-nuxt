@@ -33,31 +33,36 @@ const storeLocales = useState("locales", () => locales);
     <article v-if="post">
       <h2>Post</h2>
       <SliceZone :slices="post.data.body" :components="sliceComponents" />
-    </article>
-    <footer class="boxContainer">
-      <h3>Authors</h3>
-      <!-- Render linked authors from grouped content relationship -->
-      <div v-for="author in post.data.authors">
-        <div class="boxContent">
-          <PrismicRichText
-            :field="author.author_relationship.data.author_name"
-          />
-          <PrismicRichText
-            :field="author.author_relationship.data.author_bio"
-          />
-          <prismic-link
-            :field="author.author_relationship.data.author_website_link"
-          >
-            <prismic-rich-text
-              :field="author.author_relationship.data.author_website_text"
+      <footer class="boxContainer">
+        <h3>Authors</h3>
+        <!-- Render linked authors from grouped content relationship -->
+        <div v-for="author in post.data.authors">
+          <div class="boxContent">
+            <PrismicRichText
+              :field="author.author_relationship.data.author_name"
             />
-          </prismic-link>
+            <PrismicRichText
+              :field="author.author_relationship.data.author_bio"
+            />
+            <prismic-link
+              :field="author.author_relationship.data.author_website_link"
+            >
+              <prismic-rich-text
+                :field="author.author_relationship.data.author_website_text"
+              />
+            </prismic-link>
+          </div>
+          <div class="boxImage">
+            <PrismicImage
+              :field="author.author_relationship.data.author_image"
+            />
+          </div>
         </div>
-        <div class="boxImage">
-          <PrismicImage :field="author.author_relationship.data.author_image" />
-        </div>
-      </div>
-    </footer>
+      </footer>
+    </article>
+    <div v-else>
+      <p>Loading post...</p>
+    </div>
   </div>
 </template>
 

@@ -34,6 +34,9 @@ const { data: posts } = await useAsyncData(
         <prismic-image :field="post.data.body[1].primary.image" />
       </div>
     </article>
+    <div v-else>
+      <p>Loading recent posts...</p>
+    </div>
   </div>
 </template>
 

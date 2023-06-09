@@ -56,6 +56,9 @@ function getFlagName(flagName) {
           <div v-if="currentLocale" class="dropdownDisplay">
             {{ currentLocale.lang_name }}
           </div>
+          <div v-else class="dropdownDisplay">
+            {{ locale.lang_name }}
+          </div>
         </div>
         <span v-else>
           {{ slotProps.placeholder }}
@@ -78,6 +81,7 @@ function getFlagName(flagName) {
       </template>
     </Dropdown>
   </div>
+  <div v-else class="languageSelect"></div>
 </template>
 
 <style scoped>
