@@ -5,7 +5,7 @@ defineProps(getSliceComponentProps(["slice", "index", "slices", "context"]));
 
 // Convert h2s into Pig Latin
 const latinSerializer = {
-  heading2: ({ children }) => `<h2>${pigLatin(children)}`,
+  heading2: ({ children }) => `<h2>${pigLatin(children)}</h2>`,
 };
 </script>
 

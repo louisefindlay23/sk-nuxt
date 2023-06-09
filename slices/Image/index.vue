@@ -1,6 +1,4 @@
 <script setup>
-import styles from "./Image.module.css";
-
 const props = defineProps(
   getSliceComponentProps(["slice", "index", "slices", "context"])
 );
@@ -14,8 +12,17 @@ if (props.slice.primary.image_transformations === "blackWhite") {
 
 <template>
   <prismic-image
-    :class="styles.featuredImage"
+    class="featuredImage"
     :field="slice.primary.image"
     :imgix-params="imgixParams"
   />
 </template>
+
+<style scoped>
+.featuredImage {
+  width: 100%;
+  height: 300px;
+  margin: 1rem 0 1rem 0;
+  object-fit: cover;
+}
+</style>

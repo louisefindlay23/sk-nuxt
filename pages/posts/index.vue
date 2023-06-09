@@ -3,8 +3,6 @@ import HeadingSlice from "~/slices/Heading";
 
 import { getLocales } from "~/lib/getLocales";
 
-import styles from "~/components/PostList/PostList.module.css";
-
 const { client } = usePrismic();
 
 const { locale } = useI18n();
@@ -25,8 +23,70 @@ const components = {
 </script>
 
 <template>
-  <main :class="[styles.boxContainer, styles.page]">
+  <main class="boxContainer">
     <slice-zone :slices="page.data.body" :components="components" />
     <PostList :posts="posts" />
   </main>
 </template>
+
+<style scoped>
+/* Content Box Styles */
+.boxContainer > article {
+  display: flex;
+  justify-content: space-around;
+  margin: 3rem 0;
+  padding: 1rem 3rem;
+  border: 3px solid #000000;
+}
+
+.boxContainer > article:first-of-type {
+  margin-top: 1rem;
+}
+
+.boxContainer > article:last-of-type {
+  margin-bottom: 2rem;
+}
+
+.boxContainer > section > h2 {
+  margin-top: 2rem;
+}
+
+.boxContent {
+  width: 50%;
+}
+
+.boxContent h4 {
+  margin-top: 0;
+}
+
+.boxImage {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 30%;
+}
+
+.boxImage img {
+  min-width: 150px;
+  object-fit: contain;
+}
+
+/* Pagination Styles */
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination button {
+  margin-bottom: 2vw;
+  padding: 1vw 3vw;
+}
+
+.pagination button:first-of-type {
+  margin-right: 2.5vw;
+}
+
+.pagination button:last-of-type {
+  margin-left: 2.5vw;
+}
+</style>

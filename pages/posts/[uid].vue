@@ -8,8 +8,6 @@ import CodeSlice from "~/slices/Code";
 
 import { getLocales } from "~/lib/getLocales";
 
-import styles from "./Post.module.css";
-
 const route = useRoute();
 const uid = route.params.uid;
 
@@ -48,11 +46,11 @@ const components = {
       <h2>Post</h2>
       <SliceZone :slices="post.data.body" :components="components" />
     </article>
-    <footer :class="styles.boxContainer">
+    <footer class="boxContainer">
       <h3>Authors</h3>
       <!-- Render linked authors from grouped content relationship -->
       <div v-for="author in post.data.authors">
-        <div :class="styles.boxContent">
+        <div class="boxContent">
           <PrismicRichText
             :field="author.author_relationship.data.author_name"
           />
@@ -69,10 +67,57 @@ const components = {
             }}
           </prismic-link>
         </div>
-        <div :class="styles.boxImage">
+        <div class="boxImage">
           <PrismicImage :field="author.author_relationship.data.author_image" />
         </div>
       </div>
     </footer>
   </div>
 </template>
+
+<style scoped>
+/* Content Box Styles */
+.boxContainer > div {
+  display: flex;
+  justify-content: space-around;
+  margin: 3rem 0;
+  padding: 1rem 3rem;
+  border: 3px solid #000000;
+}
+
+.boxContainer > div:first-of-type {
+  margin-top: 1rem;
+}
+
+.boxContainer > div:last-of-type {
+  margin-bottom: 2rem;
+}
+
+.boxContainer > section > h3 {
+  margin-top: 2rem;
+}
+
+.boxContainer h3 {
+  text-align: center;
+}
+
+.boxContent {
+  width: 50%;
+}
+
+.boxContent h4 {
+  margin-top: 0;
+}
+
+.boxImage {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 30%;
+}
+
+.boxImage img {
+  min-width: 150px;
+  object-fit: contain;
+}
+</style>

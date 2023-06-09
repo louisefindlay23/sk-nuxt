@@ -1,8 +1,6 @@
 <script setup>
 import * as prismicH from "@prismicio/helpers";
 
-import styles from "./Navigation.module.css";
-
 const { locale } = useI18n();
 
 const { client } = usePrismic();
@@ -14,8 +12,8 @@ const localePath = useLocalePath();
 </script>
 
 <template>
-  <nav v-if="navigation" :class="styles.nav">
-    <ul :class="styles.navList">
+  <nav v-if="navigation" class="nav">
+    <ul class="navList">
       <li v-for="link in navigation.data.menu" :key="JSON.stringify(link)">
         <nuxt-link :to="localePath(link.link_url.url)">
           {{ prismicH.asText(link.link_text) }}
@@ -25,3 +23,23 @@ const localePath = useLocalePath();
     <LanguageSwitcher />
   </nav>
 </template>
+
+<style scoped>
+/* Nav Styles */
+.nav,
+.navList {
+  display: flex;
+  justify-content: space-around;
+}
+
+.navList {
+  width: 100%;
+  list-style-type: none;
+}
+
+@media only screen and (max-width: 599px) {
+  .nav {
+    display: block;
+  }
+}
+</style>

@@ -1,6 +1,5 @@
 <script setup>
 import "/node_modules/flag-icons/css/flag-icons.min.css";
-import styles from "./LanguageSwitcher.module.css";
 
 const nuxtApp = useNuxtApp();
 const { locale } = useI18n();
@@ -34,14 +33,14 @@ function getFlagName(flagName) {
 
 <!-- PrimeVue dropdown component to show country flags -->
 <template>
-  <div v-if="locales" :class="styles.languageSelect">
+  <div v-if="locales" class="languageSelect">
     <Dropdown
       v-model="locale"
       :options="locales"
       @change="switchLocale"
       optionLabel="lang_name"
       placeholder="Select a Country"
-      :class="`w-full md:w-14rem ${styles.dropdown}`"
+      class="w-full md:w-14rem dropdown"
     >
       <!-- Slot props to display country flags inside div -->
 
@@ -51,11 +50,10 @@ function getFlagName(flagName) {
           <img
             :alt="currentLocale.lang_name"
             src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png"
-            :class="`mr-2 fi fi-${getFlagName(slotProps.value)} ${
-              styles.dropdownDisplay
-            } ${styles.dropdownImage}`"
+            :class="`mr-2 fi fi-${getFlagName(slotProps.value)} dropdownDisplay
+            dropdownImage`"
           />
-          <div v-if="currentLocale" :class="styles.dropdownDisplay">
+          <div v-if="currentLocale" class="dropdownDisplay">
             {{ currentLocale.lang_name }}
           </div>
         </div>
@@ -69,12 +67,11 @@ function getFlagName(flagName) {
           <img
             :alt="slotProps.option.lang_name"
             src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png"
-            :class="`mr-2 fi fi-${slotProps.option.lang.substring(3)} ${
-              styles.dropdownDisplay
-            } ${styles.dropdownImage}
+            :class="`dropdownDisplay
+           dropdownImage mr-2 fi fi-${slotProps.option.lang.substring(3)}
           `"
           />
-          <div :class="styles.dropdownDisplay">
+          <div class="dropdownDisplay">
             {{ slotProps.option.lang_name }}
           </div>
         </div>
@@ -82,3 +79,28 @@ function getFlagName(flagName) {
     </Dropdown>
   </div>
 </template>
+
+<style scoped>
+.languageSelect {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown {
+  width: 18rem;
+}
+
+.dropdownImage {
+  margin-right: 10px;
+}
+
+.dropdownDisplay {
+  display: inline;
+}
+
+@media only screen and (max-width: 599px) {
+  .languageSelect {
+    justify-content: center;
+  }
+}
+</style>
