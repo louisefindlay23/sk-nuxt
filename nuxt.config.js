@@ -19,6 +19,9 @@ export default defineNuxtConfig(async () => {
       "primevue/resources/themes/lara-light-blue/theme.css",
       "primevue/resources/primevue.css",
     ],
+    build: {
+      transpile: ["primevue"],
+    },
     plugins: [{ src: "./plugins/primeVue.js" }],
 
     components: [
