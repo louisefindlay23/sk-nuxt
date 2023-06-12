@@ -21,6 +21,9 @@ export default defineNuxtConfig(async () => {
     ],
     build: {
       transpile: ["primevue"],
+      rollupOptions: {
+        external: ["/opt/build/repo/plugins/primeVue.js"],
+      },
     },
     plugins: [{ src: "./plugins/primeVue.js" }],
 
