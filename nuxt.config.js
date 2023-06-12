@@ -20,7 +20,7 @@ export default defineNuxtConfig(async () => {
       "primevue/resources/primevue.css",
     ],
     build: {
-      transpile: ["primevue"],
+      transpile: ["primeVue"],
     },
     plugins: [{ src: "./plugins/primeVue.js" }],
 
