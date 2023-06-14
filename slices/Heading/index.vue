@@ -14,4 +14,5 @@ const latinSerializer = {
     :field="slice.primary.heading"
     :htmlSerializer="latinSerializer"
   ></prismic-rich-text>
+  <Date v-if="context && context.date" :postDate="context.date" />
 </template>

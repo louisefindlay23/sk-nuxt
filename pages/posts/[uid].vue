@@ -32,7 +32,11 @@ const storeLocales = useState("locales", () => locales);
   <div>
     <article v-if="post">
       <h2>Post</h2>
-      <SliceZone :slices="post.data.body" :components="sliceComponents" />
+      <SliceZone
+        :slices="post.data.body"
+        :components="sliceComponents"
+        :context="{ date: post.first_publication_date }"
+      />
       <footer class="boxContainer">
         <h3>Authors</h3>
         <!-- Render linked authors from grouped content relationship -->
