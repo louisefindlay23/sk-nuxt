@@ -14,8 +14,10 @@ const fetchLocales = async () => {
 
 const switchLocale = (value) => {
   value = value.value;
+  console.info(value);
   nuxtApp.$i18n.setLocale(value.lang);
   currentLocale.value = value;
+  console.info(value.url);
   navigateTo(value.url);
 };
 

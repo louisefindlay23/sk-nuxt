@@ -10,7 +10,7 @@ const { client } = usePrismic();
 const { locale } = useI18n();
 
 const { data: page } = await useAsyncData("pages", () =>
-  client.getByUID("pages", "post", { lang: locale.value })
+  client.getByUID("pages", "posts", { lang: locale.value })
 );
 const { data: posts } = await useAsyncData("posts", () =>
   client.getAllByType("posts", { lang: locale.value })
