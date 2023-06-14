@@ -1,4 +1,6 @@
 <script setup>
+import * as prismicH from "@prismicio/helpers";
+
 import * as sliceComponents from "~/slices";
 
 import { getLocales } from "~/lib/getLocales";
@@ -26,6 +28,16 @@ const { data: post } = await useAsyncData("posts", () =>
 
 const locales = await getLocales(post.value, client);
 const storeLocales = useState("locales", () => locales);
+
+const siteTitle = useState("siteTitle");
+
+useHead(() => {
+  const pageTitle = post.value?.data?.title;
+  const title = pageTitle
+    ? `${prismicH.asText(pageTitle)} - ${siteTitle.value}`
+    : siteTitle.value;
+  return { title };
+});
 </script>
 
 <template>

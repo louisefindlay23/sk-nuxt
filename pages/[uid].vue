@@ -1,4 +1,6 @@
 <script setup>
+import * as prismicH from "@prismicio/helpers";
+
 import * as sliceComponents from "~/slices";
 
 import { getLocales } from "~/lib/getLocales";
@@ -19,8 +21,12 @@ const storeLocales = useState("locales", () => locales);
 
 const siteTitle = useState("siteTitle");
 
-useHead({
-  title: "- ${siteTitle}",
+useHead(() => {
+  const pageTitle = page.value?.data?.title;
+  const title = pageTitle
+    ? `${prismicH.asText(pageTitle)} - ${siteTitle.value}`
+    : siteTitle.value;
+  return { title };
 });
 </script>
 
