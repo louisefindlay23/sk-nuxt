@@ -22,15 +22,15 @@ const getNextPosts = () => {
 <template>
   <article v-for="post in showPosts" :key="JSON.stringify(post.data)">
     <div class="boxContent">
-      <prismic-link :field="post">
-        <prismic-rich-text :field="post.data.body[0].primary.heading" />
-      </prismic-link>
+      <PrismicLink :field="post">
+        <PrismicRichText :field="post.data.title" />
+      </PrismicLink>
       <Date :postDate="post.first_publication_date" />
       <!-- Slice the post's first paragraph for the excerpt -->
-      <prismic-rich-text :field="post.data.body[2].primary.text.slice(0, 1)" />
+      <PrismicRichText :field="post.data.body[2].primary.text.slice(0, 1)" />
     </div>
     <div class="boxImage">
-      <prismic-image :field="post.data.body[1].primary.image" />
+      <PrismicImage :field="post.data.featured_image" />
     </div>
   </article>
   <!-- Pagination buttons -->

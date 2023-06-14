@@ -30,13 +30,11 @@ const storeLocales = useState("locales", () => locales);
 
 <template>
   <div>
+    <h2>Post</h2>
     <article v-if="post">
-      <h2>Post</h2>
-      <SliceZone
-        :slices="post.data.body"
-        :components="sliceComponents"
-        :context="{ date: post.first_publication_date }"
-      />
+      <PrismicRichText :field="post.data.title" />
+      <Date :postDate="post.first_publication_date" />
+      <SliceZone :slices="post.data.body" :components="sliceComponents" />
       <footer class="boxContainer">
         <h3>Authors</h3>
         <!-- Render linked authors from grouped content relationship -->

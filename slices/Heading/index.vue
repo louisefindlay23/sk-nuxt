@@ -5,7 +5,7 @@ defineProps(getSliceComponentProps(["slice", "index", "slices", "context"]));
 
 // Convert h2s into Pig Latin
 const latinSerializer = {
-  heading2: ({ children }) => `<h2>${pigLatin(children)}</h2>`,
+  heading4: ({ children }) => `<h4>${pigLatin(children)}</h4>`,
 };
 </script>
 
@@ -14,5 +14,4 @@ const latinSerializer = {
     :field="slice.primary.heading"
     :htmlSerializer="latinSerializer"
   ></prismic-rich-text>
-  <Date v-if="context && context.date" :postDate="context.date" />
 </template>

@@ -72,6 +72,8 @@ main {
   flex: 1;
 }
 
-.page h2 {
-  text-align: left;
+.featuredImage {
+  width: 100%;
+  height: 50vh;
+  object-fit: cover;
 }

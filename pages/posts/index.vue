@@ -20,7 +20,8 @@ const storeLocales = useState("locales", () => locales);
 
 <template>
   <main class="boxContainer">
-    <slice-zone :slices="page.data.body" :components="sliceComponents" />
+    <PrismicRichText :field="page.data.title" />
+    <SliceZone :slices="page.data.body" :components="sliceComponents" />
     <PostList :posts="posts" />
   </main>
 </template>

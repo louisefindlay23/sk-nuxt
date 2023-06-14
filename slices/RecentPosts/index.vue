@@ -22,16 +22,14 @@ const { data: posts } = await useAsyncData(
     >
       <div class="boxContent">
         <nuxt-link :to="localePath(post.url)">
-          <prismic-rich-text :field="post.data.body[0].primary.heading" />
+          <PrismicRichText :field="post.data.title" />
         </nuxt-link>
         <Date :postDate="post.first_publication_date" />
         <!-- Slice the post's first paragraph for the excerpt -->
-        <prismic-rich-text
-          :field="post.data.body[2].primary.text.slice(0, 1)"
-        />
+        <PrismicRichText :field="post.data.body[2].primary.text.slice(0, 1)" />
       </div>
       <div class="boxImage">
-        <prismic-image :field="post.data.body[1].primary.image" />
+        <PrismicImage :field="post.data.featured_image" />
       </div>
     </article>
     <div v-else>
