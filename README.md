@@ -1,5 +1,7 @@
 ## The Sock Kingdom - A Nuxt Prismic Site
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/34640360-096b-46eb-bb8e-4ab326e30472/deploy-status)](https://app.netlify.com/sites/the-sock-kingdom-nuxt/deploys)
+
 ### Purpose
 
 Develop a basic website using Prismic and Nuxt that uses layouts, dynamic routes, and file-based routing. Also, internationlize content using Prismic locales and create a language switcher.
@@ -17,3 +19,7 @@ The blog post content was generated via [ChatGPT](https://openai.com/blog/chatgp
 ### Screenshot
 
 ![The Sock Kingdom website screenshot](https://github.com/louisefindlay23/sk-nuxt/assets/26024131/642407fe-7eb6-47f1-b16a-b9a16e3e20aa)
+
+### Link
+
+[The Sock Kingdom website deployed on Netlify](https://the-sock-kingdom-nuxt.netlify.app)
