@@ -1,4 +1,6 @@
 <script setup>
+import * as prismicH from "@prismicio/helpers";
+
 const props = defineProps(["posts"]);
 
 // Set page number and initial posts
@@ -17,6 +19,13 @@ const getNextPosts = () => {
   showPosts.value = nextPosts;
   postPage.value = nextPage;
 };
+
+const findExcerpt = computed(() => {
+  const excerpt = showPosts.value[0].data.body.find(
+    (slice) => slice.slice_type === "text"
+  );
+  return excerpt?.primary.text.slice(0, 1) || "";
+});
 </script>
 
 <template>
@@ -27,7 +36,10 @@ const getNextPosts = () => {
       </PrismicLink>
       <Date :postDate="post.first_publication_date" />
       <!-- Slice the post's first paragraph for the excerpt -->
-      <PrismicRichText :field="post.data.body[2].primary.text.slice(0, 1)" />
+      <PrismicRichText v-if="findExcerpt" :field="findExcerpt" />
+      <p v-else>
+        Read on to find {{ prismicH.asText(post.data.title).toLowerCase() }}.
+      </p>
     </div>
     <div class="boxImage">
       <PrismicImage :field="post.data.featured_image" />
