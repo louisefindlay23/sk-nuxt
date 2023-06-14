@@ -1,4 +1,6 @@
 <script setup>
+import * as prismicH from "@prismicio/helpers";
+
 defineProps(getSliceComponentProps(["slice", "index", "slices", "context"]));
 
 const { client } = usePrismic();
@@ -9,6 +11,13 @@ const { data: posts } = await useAsyncData(
     pageSize: 3,
   }
 );
+
+const findExcerpt = computed(() => {
+  const excerpt = posts.value[0].data.body.find(
+    (slice) => slice.slice_type === "text"
+  );
+  return excerpt?.primary.text.slice(0, 1) || "";
+});
 </script>
 
 <template>
@@ -26,7 +35,10 @@ const { data: posts } = await useAsyncData(
         </nuxt-link>
         <Date :postDate="post.first_publication_date" />
         <!-- Slice the post's first paragraph for the excerpt -->
-        <PrismicRichText :field="post.data.body[2].primary.text.slice(0, 1)" />
+        <PrismicRichText v-if="findExcerpt" :field="findExcerpt" />
+        <p v-else>
+          Read on to find {{ prismicH.asText(post.data.title).toLowerCase() }}.
+        </p>
       </div>
       <div class="boxImage">
         <PrismicImage :field="post.data.featured_image" />
