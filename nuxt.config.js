@@ -25,7 +25,7 @@ export default defineNuxtConfig(async () => {
         external: ["/opt/build/repo/plugins/primeVue.js"],
       },
     },
-    plugins: [{ src: "./plugins/primeVue.js" }],
+    plugins: [{ src: "./plugins/primeVue.client.js" }],
 
     components: [
       {
