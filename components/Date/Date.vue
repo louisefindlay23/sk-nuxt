@@ -1,12 +1,15 @@
 <script setup>
 import * as prismicH from "@prismicio/helpers";
 
-import { format } from "date-fns";
+import { DateTime } from "luxon";
+
+const nuxtApp = useNuxtApp();
+const locale = nuxtApp.$i18n.locale.value;
 
 defineProps(["postDate"]);
 </script>
 <template>
   <time :dateTime="prismicH.asDate(postDate)">
-    {{ format(prismicH.asDate(postDate), "dd/MM/yyyy") }}</time
+    {{ DateTime.fromISO(postDate).setLocale(locale).toLocaleString() }}</time
   >
 </template>
