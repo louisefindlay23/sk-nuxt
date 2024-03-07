@@ -1,8 +1,6 @@
 <script setup>
 import { components } from "~/slices";
 
-import { getLocales } from "~/lib/getLocales";
-
 const { locale } = useI18n();
 
 const prismic = usePrismic();
@@ -10,8 +8,8 @@ const { data: page } = useAsyncData("index", () =>
   prismic.client.getByUID("page", "home", { lang: locale.value })
 );
 
-const { locales } = useLocales(page);
-const storeLocales = useState("locales", () => locales.value);
+const nuxtApp = useNuxtApp();
+nuxtApp.provide("page", page);
 
 useHead({
   title: prismic.asText(page.value?.data.title),

@@ -1,32 +1,35 @@
 <script setup>
 import "/node_modules/flag-icons/css/flag-icons.min.css";
+import { getLocales } from "~/lib/getLocales";
+
+const nuxtApp = useNuxtApp();
 const { locale } = useI18n();
 
-const locales = ref(null);
+const locales = ref([]);
 const currentLocale = ref(null);
 
-const fetchLocales = async () => {
-  const getLocales = useState("locales");
-  return await getLocales.value;
+const useLocales = async (local) => {
+  const prismic = usePrismic();
+  return await getLocales(local, prismic.client);
 };
+
+// Fetch and set locales data
+const fetchLocales = async () => {
+  const injectedLocales = await useLocales(nuxtApp.$page.value);
+  locales.value = injectedLocales;
+
+  // Find current locale
+  currentLocale.value = locales.value.find((loc) => loc.lang === locale.value);
+};
+
+onBeforeMount(fetchLocales);
 
 const switchLocale = (value) => {
   value = value.value;
-  console.info(value);
-  locale.setLocale(value.lang);
+  const switchLocalePath = useSwitchLocalePath();
   currentLocale.value = value;
-  console.info(value.url);
-  navigateTo(value.url);
+  navigateTo(switchLocalePath(value.lang));
 };
-
-onMounted(async () => {
-  locales.value = await fetchLocales();
-  console.info(
-    `Locales are ${locales.value} and current locale is ${locale.value}`
-  );
-  // Find lang name from current locale to use in language selector display value
-  currentLocale.value = locales.value.find((loc) => loc.lang === locale.value);
-});
 
 function getFlagName(flagName) {
   flagName = flagName.toString();
@@ -51,7 +54,7 @@ function getFlagName(flagName) {
       <template #value="slotProps">
         <div v-if="slotProps.value" class="flex align-items-center">
           <img
-            :alt="currentLocale.lang_name"
+            :alt="currentLocale?.value?.lang_name"
             src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png"
             :class="`mr-2 fi fi-${getFlagName(slotProps.value)} dropdownDisplay
             dropdownImage`"

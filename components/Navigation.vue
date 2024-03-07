@@ -1,6 +1,4 @@
 <script setup>
-import LanguageSwitcher from "./LanguageSwitcher.vue";
-
 const { client } = usePrismic();
 const { locale } = useI18n();
 
