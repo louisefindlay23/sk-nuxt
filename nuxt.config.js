@@ -14,19 +14,6 @@ export default defineNuxtConfig(async () => {
   const locales = await retrieveLocales();
 
   return {
-    // Add PrimeVue for Dropdown component
-    css: [
-      "primevue/resources/themes/lara-light-blue/theme.css",
-      "primevue/resources/primevue.css",
-    ],
-    build: {
-      transpile: ["primevue"],
-      rollupOptions: {
-        external: ["/opt/build/repo/plugins/primeVue.js"],
-      },
-    },
-    plugins: [{ src: "./plugins/primeVue.client.js" }],
-
     components: [
       {
         path: "~/components",
@@ -37,8 +24,17 @@ export default defineNuxtConfig(async () => {
         pathPrefix: false,
       },
     ],
-
-    modules: ["@nuxtjs/i18n", "@nuxtjs/prismic"],
+    modules: ["@nuxtjs/i18n", "@nuxtjs/prismic", "nuxt-primevue"],
+    // Add PrimeVue for Dropdown component
+    css: [
+      "primevue/resources/themes/lara-light-blue/theme.css",
+      "primevue/resources/primevue.css",
+    ],
+    primevue: {
+      components: {
+        include: ["Dropdown"],
+      },
+    },
 
     // Set i18n locales
     i18n: {
