@@ -1,11 +1,24 @@
 <script setup>
 import { components } from "~/slices";
 
+import { getLocales } from "~/lib/getLocales";
+
 const prismic = usePrismic();
 const route = useRoute();
+const { locale } = useI18n();
+
 const { data: page } = useAsyncData(route.params.uid, () =>
-  prismic.client.getByUID("page", route.params.uid)
+  prismic.client.getByUID("page", route.params.uid, { lang: locale.value })
 );
+
+const locales = ref([]);
+
+watchEffect(async () => {
+  if (page.value) {
+    locales.value = await getLocales(page.value, prismic.client);
+    storeLocales.value = locales.value;
+  }
+});
 
 useHead({
   title: prismic.asText(page.value?.data.title),

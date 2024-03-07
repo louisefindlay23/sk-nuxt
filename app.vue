@@ -3,8 +3,8 @@ import "./styles/main.css";
 
 const prismic = usePrismic();
 
-const { data: settings } = useAsyncData("settings", () =>
-  prismic.client.getSingle("settings")
+const { data: settings } = useAsyncData("settings", (locale) =>
+  prismic.client.getSingle("settings", { lang: locale.value })
 );
 
 const siteTitle = ref(null);

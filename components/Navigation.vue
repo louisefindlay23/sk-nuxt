@@ -1,8 +1,11 @@
 <script setup>
-const { client } = usePrismic();
+import LanguageSwitcher from "./LanguageSwitcher.vue";
 
-const { data: navigation } = await useAsyncData("navigation", () =>
-  client.getByUID("navigation", "header")
+const { client } = usePrismic();
+const { locale } = useI18n();
+
+const { data: navigation } = await useAsyncData("navigation", (locale) =>
+  client.getByUID("navigation", "header", { lang: locale.value })
 );
 </script>
 
@@ -10,11 +13,12 @@ const { data: navigation } = await useAsyncData("navigation", () =>
   <nav v-if="navigation" class="nav">
     <ul class="navList">
       <li v-for="link in navigation.data.links" :key="JSON.stringify(link)">
-        <NuxtLink :to="link.link_url.url">
+        <NuxtLink :to="localePath(link.link_url.url)">
           {{ link.link_text }}
         </NuxtLink>
       </li>
     </ul>
+    <LanguageSwitcher />
   </nav>
   <nav v-else class="nav">
     <ul class="navList">

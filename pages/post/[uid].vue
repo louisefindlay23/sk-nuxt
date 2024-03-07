@@ -1,13 +1,18 @@
 <script setup>
 import { components } from "~/slices";
 
+import { getLocales } from "~/lib/getLocales";
+
 const route = useRoute();
 const uid = route.params.uid;
 
 const { client } = usePrismic();
 
+const { locale } = useI18n();
+
 const { data: post } = await useAsyncData("posts", () =>
   client.getByUID("post", uid, {
+    lang: locale.value,
     fetchLinks: [
       "author.author_name",
       "author.author_image",
@@ -17,6 +22,15 @@ const { data: post } = await useAsyncData("posts", () =>
     ],
   })
 );
+
+const locales = ref([]);
+
+watchEffect(async () => {
+  if (post.value) {
+    locales.value = await getLocales(post.value, client);
+    storeLocales.value = locales.value;
+  }
+});
 
 useHead({
   title: post.value?.data.title,
