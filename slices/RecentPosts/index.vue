@@ -58,6 +58,7 @@ const findExcerpt = computed(() => {
   margin: 3rem 0;
   padding: 1rem 3rem;
   border: 3px solid #000000;
+  border-radius: 20px;
 }
 
 .boxContainer > article:first-of-type {
