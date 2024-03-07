@@ -1,30 +1,30 @@
 {
-  "name": "nuxt-app",
+  "name": "nuxt-starter-prismic-minimal",
+  "version": "0.0.0",
   "private": true,
-  "type": "module",
+  "license": "Apache-2.0",
+  "author": "Prismic <contact@prismic.io> (https://prismic.io)",
   "scripts": {
+    "dev": "concurrently \"npm:nuxt:dev\" \"npm:slicemachine\" --names \"nuxt,slicemachine\" --prefix-colors green,magenta",
+    "nuxt:dev": "nuxt dev",
     "build": "nuxt build",
-    "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "slicemachine": "start-slicemachine",
+    "lint": "eslint ."
   },
   "devDependencies": {
-    "@nuxt/devtools": "^0.5.5",
-    "@nuxtjs/i18n": "^8.0.0-beta.12",
-    "@nuxtjs/prismic": "^3.0.0-rc.7",
-    "@types/node": "^18",
-    "nuxt": "^3.5.2",
-    "nuxt-primevue": "^0.3.1"
+    "@nuxt/devtools": "^1.0.0",
+    "@nuxt/eslint-config": "^0.2.0",
+    "@nuxtjs/prismic": "^3.1.0",
+    "@slicemachine/adapter-nuxt": "^0.3.36",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.52.0",
+    "nuxt": "^3.8.0",
+    "slice-machine-ui": "^1.24.1"
   },
   "dependencies": {
-    "@prismicio/client": "^7.0.1",
-    "@prismicio/helpers": "^2.3.9",
-    "flag-icons": "^6.7.0",
-    "luxon": "^3.4.4",
-    "piglatin": "^0.1.2",
-    "prettier": "^2.8.8",
-    "primevue": "^3.29.2",
-    "prismjs": "^1.29.0"
+    "luxon": "^3.4.4"
   }
 }

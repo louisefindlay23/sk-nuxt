@@ -1,24 +1,20 @@
 <script setup>
-const { locale } = useI18n();
-
 const { client } = usePrismic();
-const { data: navigation } = await useAsyncData("navigation", (locale) =>
-  client.getSingle("navigation", { lang: locale.value })
-);
 
-const localePath = useLocalePath();
+const { data: navigation } = await useAsyncData("navigation", () =>
+  client.getByUID("navigation", "header")
+);
 </script>
 
 <template>
   <nav v-if="navigation" class="nav">
     <ul class="navList">
-      <li v-for="link in navigation.data.menu" :key="JSON.stringify(link)">
-        <nuxt-link :to="localePath(link.link_url.url)">
-          <prismic-rich-text :field="link.link_text" />
-        </nuxt-link>
+      <li v-for="link in navigation.data.links" :key="JSON.stringify(link)">
+        <NuxtLink :to="link.link_url.url">
+          {{ link.link_text }}
+        </NuxtLink>
       </li>
     </ul>
-    <LanguageSwitcher />
   </nav>
   <nav v-else class="nav">
     <ul class="navList">

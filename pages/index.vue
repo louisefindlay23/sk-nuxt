@@ -1,22 +1,31 @@
 <script setup>
-import * as sliceComponents from "~/slices";
+import { useSeoMeta } from "nuxt/app";
+import { components } from "~/slices";
 
-import { getLocales } from "~/lib/getLocales";
-
-const { client } = usePrismic();
-
-const { locale } = useI18n();
-
-const { data: home } = await useAsyncData("home", () =>
-  client.getSingle("home", { lang: locale.value })
+const prismic = usePrismic();
+const { data: page } = useAsyncData("index", () =>
+  prismic.client.getByUID("page", "home")
 );
 
-const locales = await getLocales(home.value, client);
-const storeLocales = useState("locales", () => locales);
+useHead({
+  title: prismic.asText(page.value?.data.title),
+  meta: [
+    { name: "description", content: page.value?.data.meta_description },
+    { property: "og:title", content: page.value?.data.meta_title },
+    {
+      property: "og:description",
+      content: page.value?.data.meta_description,
+    },
+    { property: "og:image", content: page.value?.data.meta_image.url },
+    { name: "twitter:card", content: "summary_large_image" },
+  ],
+});
 </script>
 
 <template>
-  <main>
-    <slice-zone :slices="home.data.body" :components="sliceComponents" />
-  </main>
+  <SliceZone
+    wrapper="main"
+    :slices="page?.data.slices ?? []"
+    :components="components"
+  />
 </template>

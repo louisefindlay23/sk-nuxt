@@ -3,5 +3,5 @@ defineProps(getSliceComponentProps(["slice", "index", "slices", "context"]));
 </script>
 
 <template>
-  <prismic-rich-text :field="slice.primary.text"></prismic-rich-text>
+  <Prismic-Rich-Text :field="slice.primary.text" />
 </template>

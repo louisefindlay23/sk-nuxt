@@ -1,26 +1,38 @@
 <script setup>
-import * as prismicH from "@prismicio/helpers";
-
 import "./styles/main.css";
 
-const { data: navigation } = await useAsyncData("navigation", (locale) =>
-  client.getSingle("navigation", { lang: locale.value })
+const prismic = usePrismic();
+
+const { data: settings } = useAsyncData("settings", () =>
+  prismic.client.getSingle("settings")
 );
 
 const siteTitle = ref(null);
+const siteDescription = ref(null);
+const siteImage = ref(null);
 
 // Set siteTitle globally as nuxtApp provide
 watchEffect(() => {
-  if (navigation.value) {
-    siteTitle.value = useState("siteTitle", () =>
-      prismicH.asText(navigation.value.data.site_title)
-    );
+  if (settings.value) {
+    siteTitle.value = settings.value.data.site_title;
+    siteDescription.value = settings.value.data.site_meta_description;
+    siteImage.value = settings.value.data.site_meta_image.url;
   }
 });
 
-// Google Font imports
+// Google Font imports and Meta Tags
 useHead({
   title: siteTitle.value,
+  meta: [
+    { name: "description", content: siteDescription.value },
+    { property: "og:title", content: siteTitle.value },
+    {
+      property: "og:description",
+      content: siteDescription.value,
+    },
+    { property: "og:image", content: siteImage.value },
+    { name: "twitter:card", content: "summary_large_image" },
+  ],
   link: [
     {
       rel: "preconnect",

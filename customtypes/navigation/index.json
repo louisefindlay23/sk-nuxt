@@ -1,0 +1,41 @@
+{
+  "format": "custom",
+  "id": "navigation",
+  "label": "Navigation",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
+      },
+      "links": {
+        "type": "Group",
+        "config": {
+          "label": "Links",
+          "repeat": true,
+          "fields": {
+            "link_url": {
+              "type": "Link",
+              "config": {
+                "label": "Link URL",
+                "placeholder": "",
+                "select": null
+              }
+            },
+            "link_text": {
+              "type": "Text",
+              "config": {
+                "label": "Link Text",
+                "placeholder": ""
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

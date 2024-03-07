@@ -1,39 +1,31 @@
 <script setup>
-import * as prismicH from "@prismicio/helpers";
+import { components } from "~/slices";
 
-import * as sliceComponents from "~/slices";
-
-import { getLocales } from "~/lib/getLocales";
-
+const prismic = usePrismic();
 const route = useRoute();
-const uid = route.params.uid;
-
-const { client } = usePrismic();
-
-const { locale } = useI18n();
-
-const { data: page } = await useAsyncData("page", () =>
-  client.getByUID("pages", uid, { lang: locale.value })
+const { data: page } = useAsyncData(route.params.uid, () =>
+  prismic.client.getByUID("page", route.params.uid)
 );
 
-const locales = await getLocales(page.value, client);
-const storeLocales = useState("locales", () => locales);
-
-const siteTitle = useState("siteTitle");
-
-useHead(() => {
-  const pageTitle = page.value?.data?.title;
-  const title = pageTitle
-    ? `${prismicH.asText(pageTitle)} - ${siteTitle.value}`
-    : siteTitle.value;
-  return { title };
+useHead({
+  title: prismic.asText(page.value?.data.title),
+  meta: [
+    { name: "description", content: page.value?.data.meta_description },
+    { property: "og:title", content: page.value?.data.meta_title },
+    {
+      property: "og:description",
+      content: page.value?.data.meta_description,
+    },
+    { property: "og:image", content: page.value?.data.meta_image.url },
+    { name: "twitter:card", content: "summary_large_image" },
+  ],
 });
 </script>
 
 <template>
-  <main class="page">
-    <PrismicRichText :field="page.data.title" />
-    <PrismicImage class="featuredImage" :field="page.data.featured_image" />
-    <SliceZone :slices="page.data.body" :components="sliceComponents" />
-  </main>
+  <SliceZone
+    wrapper="main"
+    :slices="page?.data.slices ?? []"
+    :components="components"
+  />
 </template>

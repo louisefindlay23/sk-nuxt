@@ -1,21 +1,9 @@
 <script setup>
-const props = defineProps(
-  getSliceComponentProps(["slice", "index", "slices", "context"])
-);
-
-// Get Imgix parameters from select field
-let imgixParams = null;
-if (props.slice.primary.image_transformations === "blackWhite") {
-  imgixParams = { duotone: ["black", "white"] };
-}
+defineProps(getSliceComponentProps(["slice", "index", "slices", "context"]));
 </script>
 
 <template>
-  <prismic-image
-    class="featuredImage"
-    :field="slice.primary.image"
-    :imgix-params="imgixParams"
-  />
+  <PrismicImage :field="slice.primary.image" />
 </template>
 
 <style scoped>

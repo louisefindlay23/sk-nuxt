@@ -1,28 +1,19 @@
 <script setup>
-import * as prismicH from "@prismicio/helpers";
-
 defineProps(getSliceComponentProps(["slice", "index", "slices", "context"]));
 
 const { client } = usePrismic();
 const { data: posts } = await useAsyncData(
   "posts",
-  (locale) => client.getAllByType("posts", { lang: locale.value }),
+  () => client.getAllByType("post"),
   {
     pageSize: 3,
   }
 );
-
-const findExcerpt = computed(() => {
-  const excerpt = posts.value[0].data.body.find(
-    (slice) => slice.slice_type === "text"
-  );
-  return excerpt?.primary.text.slice(0, 1) || "";
-});
 </script>
 
 <template>
   <div class="boxContainer">
-    <prismic-rich-text :field="slice.primary.post_heading" wrapper="section" />
+    <PrismicRichText :field="slice.primary.list_heading" wrapper="section" />
     <!-- Iterate over paginated posts -->
     <article
       v-if="posts"
@@ -30,14 +21,14 @@ const findExcerpt = computed(() => {
       :key="JSON.stringify(post.data)"
     >
       <div class="boxContent">
-        <nuxt-link :to="localePath(post.url)">
-          <PrismicRichText :field="post.data.title" />
-        </nuxt-link>
+        <NuxtLink :to="post.url">
+          <h3>{{ post.data.title }}</h3>
+        </NuxtLink>
         <Date :postDate="post.first_publication_date" />
-        <!-- Slice the post's first paragraph for the excerpt -->
-        <PrismicRichText v-if="findExcerpt" :field="findExcerpt" />
+        <PrismicRichText v-if="post.data.excerpt" :field="post.data.excerpt" />
         <p v-else>
-          Read on to find {{ prismicH.asText(post.data.title).toLowerCase() }}.
+          Read on to find
+          <NuxtLink :to="post.url">{{ post.data.title }}</NuxtLink>
         </p>
       </div>
       <div class="boxImage">

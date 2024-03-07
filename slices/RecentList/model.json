@@ -1,0 +1,28 @@
+{
+  "id": "recent_list",
+  "type": "SharedSlice",
+  "name": "RecentList",
+  "description": "RecentList",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "list_heading": {
+          "type": "StructuredText",
+          "config": {
+            "label": "List Heading",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "single": "heading2,heading3"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
