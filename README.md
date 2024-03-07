@@ -10,7 +10,7 @@ Develop a basic website using Prismic and Nuxt that uses layouts, dynamic routes
 
 The Sock Kingdom website contains three blog posts about buying socks which are displayed on the homepage using a Recent Posts slice. There is also a Posts page which uses pagination to show all blog posts.
 
-The modules used include [`Luxon`]https://moment.github.io/luxon) to render the blog post publication date, [`PrimeVue's Dropdown`](https://primevue.org/dropdown) component to create the language switcher select element, and [`flag-icons`](https://www.npmjs.com/package/flag-icons) to display the language icons.
+The modules used include [`Luxon`](https://moment.github.io/luxon) to render the blog post publication date, [`PrimeVue's Dropdown`](https://primevue.org/dropdown) component to create the language switcher select element, and [`flag-icons`](https://www.npmjs.com/package/flag-icons) to display the language icons.
 
 The blog post content was generated via [ChatGPT](https://openai.com/blog/chatgpt) and author profiles using [AI Writer](https://tools.picsart.com/text/ai-writer). All blog post images were taken from [Unsplash](https://unsplash.com).
 
